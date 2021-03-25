@@ -1,8 +1,27 @@
 # jq-quarkus 
 
-This project uses Quarkus, the Supersonic Subatomic Java Framework.
+[jq](https://stedolan.github.io/jq/) is one of my favorite command line tools for parsing JSON.
 
-If you want to learn more about Quarkus, please visit its website: https://quarkus.io/ .
+Example usage:
+```bash
+echo '{"foo": {"bar": "1"}}' | jq .foo.bar
+```
+
+Imagine if we could use it natively from within Java applications?
+
+```java
+JQ.jq(input, ".foo.bar");
+```
+
+This is a POC to show how we could do that! Here is how it works.
+
+1. Build the [jq grammar](https://github.com/hmatt1/jq-grammar) using [ANTLR](https://www.antlr.org/)
+2. Implement the [jq language](https://github.com/hmatt1/jq-truffle) using GraalVM's [Truffle Framework](https://www.graalvm.org/graalvm-as-a-platform/language-implementation-framework/)
+3. Build a project using Quarkus, and call natively into the language.
+
+## Supported language features
+
+Currently, this implemented only supports dot notation, such as `.foo.bar` for processing JSON. Contributions welcome 😄
 
 ## Running the application in dev mode
 
