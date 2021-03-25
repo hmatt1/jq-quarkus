@@ -9,7 +9,7 @@ import java.lang.management.ManagementFactory;
 import java.util.Map;
 
 @Path("/")
-public class GreetingResource {
+public class JqResource {
 
     @GET
     @Path("/jvm")

@@ -19,6 +19,7 @@ dependencies {
     implementation group: 'io.quarkus', name: 'quarkus-resteasy-jsonb', version: '1.12.2.Final'
     implementation "org.graalvm.sdk:graal-sdk:21.0.0.2"
 
+    testImplementation 'org.assertj:assertj-core:3.19.0'
     testImplementation 'io.quarkus:quarkus-junit5'
     testImplementation 'io.rest-assured:rest-assured'
 }
@@ -42,4 +43,16 @@ compileTestJava {
 
 tasks.withType(io.quarkus.gradle.tasks.QuarkusDev) {
     jvmArgs = ["-ea", "--add-exports","org.graalvm.sdk/org.graalvm.polyglot.impl=ALL-UNNAMED"]
+}
+test {
+    jvmArgs '-ea',
+            '--add-exports',
+            'org.graalvm.sdk/org.graalvm.polyglot.impl=ALL-UNNAMED'
+
+    useJUnitPlatform()
+    testLogging {
+        showStandardStreams true
+        events "passed", "skipped", "failed"
+        exceptionFormat "full"
+    }
 }
