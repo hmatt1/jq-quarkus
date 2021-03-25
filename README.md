@@ -19,6 +19,16 @@ This is a POC to show how we could do that! Here is how it works.
 2. Implement the [jq language](https://github.com/hmatt1/jq-truffle) using GraalVM's [Truffle Framework](https://www.graalvm.org/graalvm-as-a-platform/language-implementation-framework/)
 3. Build a project using Quarkus, and call natively into the language.
 
+Example endpoint:
+```java
+    @POST
+    @Path("jq")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.TEXT_PLAIN)
+    public Object jq(Map input) {
+        return JQ.jq(input, ".foo.bar");
+    }
+```
 ## Supported language features
 
 Currently, this implemented only supports dot notation, such as `.foo.bar` for processing JSON. Contributions welcome 😄
