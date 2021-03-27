@@ -15,7 +15,7 @@ dependencies {
     implementation enforcedPlatform("${quarkusPlatformGroupId}:${quarkusPlatformArtifactId}:${quarkusPlatformVersion}")
     implementation 'io.quarkus:quarkus-arc'
     implementation 'io.quarkus:quarkus-resteasy'
-    implementation "com.jq:jq-truffle:1.0"
+    implementation "com.jq:jq-truffle:0.2"
     implementation group: 'io.quarkus', name: 'quarkus-resteasy-jsonb', version: '1.12.2.Final'
     implementation "org.graalvm.sdk:graal-sdk:21.0.0.2"
 

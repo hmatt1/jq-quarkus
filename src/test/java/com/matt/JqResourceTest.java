@@ -27,7 +27,7 @@ public class JqResourceTest {
     public void testJqEndpoint() {
         Response response = given()
                 .contentType(MediaType.APPLICATION_JSON)
-                .body(Map.of("foo", Map.of("bar", "1")))
+                .body(Map.of("foo", Map.of("bar", 1)))
                 .when()
                 .post("/jq")
                 .thenReturn();
