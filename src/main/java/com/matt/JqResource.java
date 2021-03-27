@@ -1,8 +1,10 @@
 package com.matt;
 
 import com.jq.JQ;
-import org.jboss.resteasy.annotations.Body;
+import com.matt.client.ScryfallClient;
+import org.eclipse.microprofile.rest.client.inject.RestClient;
 
+import javax.inject.Inject;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import java.lang.management.ManagementFactory;
@@ -10,6 +12,10 @@ import java.util.Map;
 
 @Path("/")
 public class JqResource {
+
+    @Inject
+    @RestClient
+    ScryfallClient scryfallClient;
 
     @GET
     @Path("/jvm")
@@ -27,10 +33,11 @@ public class JqResource {
     }
 
     @POST
-    @Path("jqstr")
-    @Consumes(MediaType.APPLICATION_JSON)
-    @Produces(MediaType.TEXT_PLAIN)
-    public String jqstr(Map input) {
-        return JQ.jq(input, ".foo.bar", String.class);
+    @Path("cards/{name}")
+    @Consumes(MediaType.TEXT_PLAIN)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Object jqstr(String program, @PathParam("name") String name) {
+        Object input = scryfallClient.searchByName(name);
+        return JQ.jq(input, program);
     }
 }
