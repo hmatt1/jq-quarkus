@@ -29,9 +29,14 @@ Example endpoint:
         return JQ.jq(input, ".foo.bar");
     }
 ```
+
+One of the interesting aspects of this implementation is that it works on Java objects directly, and doesn't need Jackson to convert input to and from JSON.
+
 ## Supported language features
 
-Currently, this implemented only supports dot notation, such as `.foo.bar` for processing JSON. Contributions welcome 😄
+This experimental implementation only supports a subset of jq language features, such as `.foo.bar` for processing JSON. Contributions welcome 😄
+
+Check [this test suite](https://github.com/hmatt1/jq-truffle/blob/main/src/test/java/com/jq/JqScenariosTest.java#L37) for examples of supported jq syntax.
 
 ## Running the application in dev mode
 
